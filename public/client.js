@@ -21,15 +21,14 @@ function sendMessage(message){
     // append
     appendMessage(msg, 'outgoing')
     textarea.value = '';
-    scrollTotop()
-
+    scrollToBottom()
 // send to server
   socket.emit('message', msg)
 }
 
 function appendMessage(msg, type) {
     let maindiv = document.createElement('div')
-    let className = type;
+    let className = type
     maindiv.classList.add(className, 'msg')
 
     let markup = `
@@ -39,14 +38,14 @@ function appendMessage(msg, type) {
     maindiv.innerHTML = markup
     chatArea.appendChild(maindiv)
 }
-// recieving msg
- socket.on('message', (msg) =>{
-    appendMessage(msg , 'incoming')
-    scrollTotop()
- }) 
+// Recieve messages 
+socket.on('message', (msg) => {
+    appendMessage(msg, 'incoming')
+    scrollToBottom()
+})
 
- function scrollTotop(){
-    chatArea.scrollTop = chatArea.scrollHeight; 
- }
+function scrollToBottom() {
+    chatArea.scrollTop = chatArea.scrollHeight
+}
 
  
